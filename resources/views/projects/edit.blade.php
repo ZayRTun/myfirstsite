@@ -9,37 +9,36 @@
         @method('PATCH')
         @csrf
 
-        <div class="field">
-            <label class="label" for="title">Title</label>
+        <div class="form-group">
+            <label for="title">Title</label>
 
-            <div class="control">
-                <input type="text" class="input" name="title" placeholder="Title" value="{{ $project->title }}">
-            </div>
+            <input type="text" class="form-control" name="title" placeholder="Title" value="{{ $project->title }}">
         </div>
 
-        <div class="field">
-            <label class="label" for="description">Description</label>
+        <div class="form-group">
+            <label for="description">Description</label>
 
-            <div class="control">
-                <textarea class="textarea" name="description">{{ $project->description }}</textarea>
-            </div>
+            <textarea name="description" id="description" cols="30" rows="10" class="form-control">{{ $project->description }}</textarea>
         </div>
-
-        <div class="field">
-            <div class="control">
-              <button class="button is-link" type="submit">Update project</button>
-            </div>
-        </div>
+        <button class="btn btn-primary" type="submit">Submit</button>
     </form>
 
-    <form action="/projects/{{ $project->id }}" method="POST">
+    <form action="/projects/{{ $project->id }}" method="POST" class="mt-3">
         @method('DELETE')
         @csrf
 
-        <div class="field">
-            <div class="control">
-              <button class="button is-danger">Delete Project</button>
-            </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-danger">Delete Project</button>
         </div>
     </form>
+
+    @if ($errors->any())
+        <div class="alert alert-danger" role="alert">
+            <ul class="list-unstyled">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 @endsection

@@ -3,6 +3,13 @@
 @section('title', $project->title)
 
 @section('content')
-    <h1 class="title">{{ $project->title }}</h1>
-    <p>{{ $project->description }}</p>
+	<div class="card">
+		<div class="card-header">
+			{{ $project->title }}
+	  	</div>
+	  	<div class="card-body">
+			<p class="card-text">{{ $project->description }}</p>
+			<a href="/projects/{{ $project->id }}/edit" class="btn btn-primary">Edit</a>
+	  	</div>
+	</div>
 @endsection

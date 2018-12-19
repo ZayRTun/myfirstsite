@@ -21,43 +21,35 @@ class ProjectsController extends Controller
 
     public function store()
     {
-        $project = new Project();
-
-        $project->title = request('title');
-        $project->description = request('description');
-        $project->save();
+        Project::create(request(['title', 'description']));
 
         return redirect('/projects');
     }
 
-    public function show($id)
+    public function show(Project $project)
     {
-        $project = Project::findOrFail($id);
-
         return view('projects.show', compact('project'));
     }
 
-    public function edit($id)
+    public function edit(Project $project)
     {
-        $project = Project::findOrFail($id);
         return view('projects.edit', compact('project'));
     }
 
-    public function update($id)
+    public function update(Project $project)
     {
-        $project = Project::findOrFail($id);
+        request()->validate([
+            'title' => 'required',
+            'description' => 'required'
+        ]);
+        $project->update(request(['title', 'description']));
 
-        $project->title = request('title');
-        $project->description = request('description');
-
-        $project->save();
-
-        return redirect('/projects/'. $id);
+        return redirect('/projects/'. $project->id);
     }
 
-    public function destroy($id)
+    public function destroy(Project $project)
     {
-        Project::findOrFail($id)->delete();
+        $project->delete();
 
         return redirect('/projects');
     }
