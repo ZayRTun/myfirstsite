@@ -12,4 +12,14 @@ class Project extends Model
 
     // Or you could do the inverse to above as below
     protected $guarded = []; // Accept everything except these within the array
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
+
+    public function addTask($task)
+    {
+        $this->tasks()->create($task);
+    }
 }

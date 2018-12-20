@@ -20,7 +20,7 @@
 
             <textarea name="description" id="description" cols="30" rows="10" class="form-control">{{ $project->description }}</textarea>
         </div>
-        <button class="btn btn-primary" type="submit">Submit</button>
+        <button class="btn btn-primary" type="submit">Update Project</button>
     </form>
 
     <form action="/projects/{{ $project->id }}" method="POST" class="mt-3">
@@ -32,13 +32,5 @@
         </div>
     </form>
 
-    @if ($errors->any())
-        <div class="alert alert-danger" role="alert">
-            <ul class="list-unstyled">
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+    @include('errors')
 @endsection

@@ -32,3 +32,6 @@ Route::resource('projects', 'ProjectsController'); // will auto generate the rou
 // Route::get('/projects/{project}/edit', 'ProjectsController@edit');
 // Route::patch('/projects/{project}', 'ProjectsController@update');
 // Route::delete('/projects/{project}', 'ProjectsController@destroy');
+
+Route::patch('/tasks/{task}', 'ProjectTasksController@update');
+Route::post('/project/{project}/tasks', 'ProjectTasksController@store');
