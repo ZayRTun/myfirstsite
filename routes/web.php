@@ -1,18 +1,25 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+// lets bind something into the service container
+// use bind for multiple instance or singleton for a single global instance
+// app()->bind('example', function () {
+// app()->singleton('App\Example', function () {
+//     dd('called agian');
+//     return new \App\Example;
+// });
+app()->singleton('App\Services\Twitter', function () {
+    return new App\Services\Twitter('secretKey');
+});
+
 Route::get('/', function () {
+    // dd(app('App\Example'));
+
     return view('welcome');
 });
+
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 /*
     GET /projects (index)
