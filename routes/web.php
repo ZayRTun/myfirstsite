@@ -1,5 +1,7 @@
 <?php
 
+use App\Services\Twitter;
+
 // lets bind something into the service container
 // use bind for multiple instance or singleton for a single global instance
 // app()->bind('example', function () {
@@ -7,12 +9,13 @@
 //     dd('called agian');
 //     return new \App\Example;
 // });
-app()->singleton('App\Services\Twitter', function () {
-    return new App\Services\Twitter('secretKey');
-});
+// app()->singleton('App\Services\Twitter', function () {
+//     return new App\Services\Twitter('secretKey');
+// });
 
-Route::get('/', function () {
+Route::get('/', function (Twitter $twt) {
     // dd(app('App\Example'));
+    dd($twt);
 
     return view('welcome');
 });
