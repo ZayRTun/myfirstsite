@@ -1,5 +1,8 @@
-@extends ('layout')
+@extends ('layouts.app')
 
 @section ('content')
-    <h1>My first site</h1>
+    <div class="container">
+        <h1>My first site</h1>
+        <a href="/projects">Projects</a>
+    </div>
 @endsection

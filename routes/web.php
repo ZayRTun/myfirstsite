@@ -1,6 +1,5 @@
 <?php
 
-use App\Services\Twitter;
 
 // lets bind something into the service container
 // use bind for multiple instance or singleton for a single global instance
@@ -13,16 +12,9 @@ use App\Services\Twitter;
 //     return new App\Services\Twitter('secretKey');
 // });
 
-Route::get('/', function (Twitter $twt) {
-    // dd(app('App\Example'));
-    dd($twt);
-
+Route::get('/', function () {
     return view('welcome');
 });
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
 /*
     GET /projects (index)
@@ -34,7 +26,7 @@ Route::get('/', function (Twitter $twt) {
     DELETE /projects/1 (destroy)        // delete a project
 */
 
-Route::resource('projects', 'ProjectsController'); // will auto generate the routes as below
+Route::resource('projects', 'ProjectsController');// will auto generate the routes as below
 // Route::get('/projects', 'ProjectsController@index');
 // Route::get('/projects/create', 'ProjectsController@create');
 // Route::get('/projects/{project}', 'ProjectsController@show');
@@ -45,3 +37,7 @@ Route::resource('projects', 'ProjectsController'); // will auto generate the rou
 
 Route::patch('/tasks/{task}', 'ProjectTasksController@update');
 Route::post('/project/{project}/tasks', 'ProjectTasksController@store');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

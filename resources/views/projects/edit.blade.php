@@ -1,36 +1,37 @@
-@extends('layout')
-
-@section('title', 'Edit project')
+@extends('layouts.app')
 
 @section('content')
-    <h1 class="title">Edit project</h1>
+    <div class="container">
 
-    <form action="/projects/{{ $project->id }}" method="POST">
-        @method('PATCH')
-        @csrf
+        <h1 class="title">Edit project</h1>
 
-        <div class="form-group">
-            <label for="title">Title</label>
+        <form action="/projects/{{ $project->id }}" method="POST">
+            @method('PATCH')
+            @csrf
 
-            <input type="text" class="form-control" name="title" placeholder="Title" value="{{ $project->title }}">
-        </div>
+            <div class="form-group">
+                <label for="title">Title</label>
 
-        <div class="form-group">
-            <label for="description">Description</label>
+                <input type="text" class="form-control" name="title" placeholder="Title" value="{{ $project->title }}">
+            </div>
 
-            <textarea name="description" id="description" cols="30" rows="10" class="form-control">{{ $project->description }}</textarea>
-        </div>
-        <button class="btn btn-primary" type="submit">Update Project</button>
-    </form>
+            <div class="form-group">
+                <label for="description">Description</label>
 
-    <form action="/projects/{{ $project->id }}" method="POST" class="mt-3">
-        @method('DELETE')
-        @csrf
+                <textarea name="description" id="description" cols="30" rows="10" class="form-control">{{ $project->description }}</textarea>
+            </div>
+            <button class="btn btn-primary" type="submit">Update Project</button>
+        </form>
 
-        <div class="form-group">
-            <button type="submit" class="btn btn-danger">Delete Project</button>
-        </div>
-    </form>
+        <form action="/projects/{{ $project->id }}" method="POST" class="mt-3">
+            @method('DELETE')
+            @csrf
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-danger">Delete Project</button>
+            </div>
+        </form>
+    </div>
 
     @include('errors')
 @endsection
